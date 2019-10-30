@@ -1,10 +1,6 @@
 /**
- * Course: COMP 426
- * Assignment: a05
- * Author: <type your name here>
- *
- * This script uses jQuery to build an HTML page with content taken from the
- * data defined in data.js.
+Note: We used the code Josh built in assignment five and edited it to create a prototype for our project, which will likely
+use a similar dynamic rendering technique as the user clicks through houses.
  */
 
  let parseDate = function(date) {
@@ -82,81 +78,6 @@ export const renderHouseEditForm = function(house) {
 
 
 
-/**
- * Handles the JavaScript event representing a user clicking on the "edit"
- *     button for a particular house.
- * @param event  The JavaScript event that is being handled
- */
-export const handleEditButtonPress = function(event) {
-    // TODO: Render the house edit form for the clicked house and replace the
-    //       house's card in the DOM with their edit form instead
-    let houseId = $(event.target).attr("id").substr(5);
-    let houseCards = document.querySelectorAll('.HouseCard');
-    for(let i = 0; i<houseCards.length; i++){
-        let currentCard = $(houseCards[i])
-        if (currentCard.attr("id").substr(9) == houseId){
-            let house = houseicData.find(a => a.id == parseInt(houseId));
-            renderHouseEditForm(house).insertBefore(currentCard);
-            currentCard.remove();
-        }
-    }
-};
-
-
-
-/**
- * Handles the JavaScript event representing a user clicking on the "cancel"
- *     button for a particular house.
- * @param event  The JavaScript event that is being handled
- */
-export const handleCancelButtonPress = function(event) {
-    // TODO: Render the house card for the clicked house and replace the
-    //       house's edit form in the DOM with their card instead
-    let houseId = $(event.target).attr("id").substr(7);
-    let editForms = document.querySelectorAll('.EditForm');
-    for(let i = 0; i<editForms.length; i++){
-        let currentForm = $(editForms[i])
-        if (currentForm.attr("id").substr(9) == houseId){
-            let house = houseicData.find(a => a.id == parseInt(houseId));
-            renderHouseCard(house).insertBefore(currentForm);
-            currentForm.remove();
-        }
-    }
-};
-
-
-
-/**
- * Handles the JavaScript event representing a user clicking on the "cancel"
- *     button for a particular house.
- * @param event  The JavaScript event that is being handled
- */
-export const handleEditFormSubmit = function(event) {
-    // TODO: Render the house card using the updated field values from the
-    //       submitted form and replace the house's edit form in the DOM with
-    //       their updated card instead
-    let houseId = $(event.target).attr("id").substr(5);
-    let editForms = document.querySelectorAll('.EditForm');
-    for(let i = 0; i<editForms.length; i++){
-        let currentForm = $(editForms[i])
-        if (currentForm.attr("id").substr(9) == houseId){
-            let house = houseicData.find(a => a.id == parseInt(houseId));
-            house.name = document.getElementById('nameInput '+houseId).value;
-            house.first = document.getElementById('firstNameInput '+houseId).value;
-            house.last = document.getElementById('lastNameInput '+houseId).value;
-            let newDate = document.getElementById('firstSeenInput '+houseId).value;
-            let year = parseInt(newDate.substr(0,4));
-            let month = parseInt(newDate.substr(5,2))-1;
-            let day = parseInt(newDate.substr(8,2));
-            house.firstSeen = new Date(year,month, day);
-            house.description = document.getElementById('descriptionInput '+houseId).value;
-            renderHouseCard(house).insertBefore(currentForm);
-            currentForm.remove();
-        }
-    }
-    
-};
-
 
 
 /**
@@ -177,18 +98,6 @@ export const loadHouseesIntoDOM = function(housees) {
     $root.append(renderHouseCard(houseicData[0]));
     
 
-
-    // TODO: Use jQuery to add handleEditButtonPress() as an event handler for
-    //       clicking the edit button
-    $(document).on('click', '.Edit', handleEditButtonPress);
-
-    // TODO: Use jQuery to add handleEditFormSubmit() as an event handler for
-    //       submitting the form
-    $(document).on('click', ".Save", handleEditFormSubmit);
-    
-    // TODO: Use jQuery to add handleCancelButtonPress() as an event handler for
-    //       clicking the cancel button
-    $(document).on('click', ".Cancel", handleCancelButtonPress);
 };
 
 
