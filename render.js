@@ -21,85 +21,82 @@
 
 
 /**
- * Given a hero object (see data.js), this function generates a "card" showing
- *     the hero's name, information, and colors.
- * @param hero  A hero object (see data.js)
+ * Given a house object (see data.js), this function generates a "card" showing
+ *     the house's name, information, and colors.
+ * @param house  A house object (see data.js)
  */
-export const renderHeroCard = function(hero) {
-    // TODO: Copy your code from a04 to render the hero card
-    let heroCard = $("<div></div>").attr("class", "HeroCard").attr("id", `HeroCard ${hero.id}`);
+export const renderHouseCard = function(house) {
+    // TODO: Copy your code from a04 to render the house card
+    let houseCard = $("<div></div>").attr("class", "HouseCard").attr("id", `HouseCard ${house.id}`);
     let topPanel = $("<div></div>");
     let bottomPanel = $("<div></div>");
-    heroCard.append(topPanel);
-    heroCard.append(bottomPanel);
+    houseCard.append(topPanel);
+    houseCard.append(bottomPanel);
 
-    topPanel.attr("style", `background-color: ${hero.backgroundColor};`);
-    topPanel.append($('<div></div>').append($("<img>").attr("src", `${hero.img}`)));
-    topPanel.append($("<span></span>").attr("style", `color: ${hero.color};`).text(`${hero.name}`));
+    topPanel.append($("<span id='name'></span>").attr("style", `color: ${house.color};`).text(`${house.name}`));
+    topPanel.attr("style", `background-color: ${house.backgroundColor};`);
+    topPanel.append($('<div></div>').append($("<img>").attr("src", `${house.img}`)));
+    
 
-    bottomPanel.append($(`<div><b>Alter Ego: </b>${hero.first} ${hero.last}</div>`));
-    let date = hero.firstSeen;
+    let date = house.firstSeen;
     console.log(date);
-    bottomPanel.append($(`<div><b>First Appearance: </b>${parseDate(date)}</div>`));
-    bottomPanel.append($(`<p>${hero.description}</p>`));
-    bottomPanel.append($(`<button>Edit</button>`).attr("id", `Edit ${hero.id}`).attr("class", "Edit"));
+    bottomPanel.append($(`<div><b>Date Built: </b>${parseDate(date)}</div>`));
+    bottomPanel.append($(`<p>${house.description}</p>`));
+    bottomPanel.append($(`<button>Dislike</button>`).attr("id", `Edit ${house.id}`).attr("class", "Edit"));
+    bottomPanel.append($(`<button>Like</button>`).attr("id", `Edit ${house.id}`).attr("class", "Edit"));
 
-    return heroCard;
+    return houseCard;
 };
 
 
 
 /**
- * Given a hero object, this function generates a <form> which allows the
- *     user to edit the fields of the hero. The form inputs should be
- *     pre-populated with the initial values of the hero.
- * @param hero  The hero object to edit (see data.js)
+ * Given a house object, this function generates a <form> which allows the
+ *     user to edit the fields of the house. The form inputs should be
+ *     pre-populated with the initial values of the house.
+ * @param house  The house object to edit (see data.js)
  */
-export const renderHeroEditForm = function(hero) {
-    // TODO: Copy your code from a04 to render the hero edit form
-    let heroEditForm = $("<div></div>").attr('class', 'EditForm').attr('id', `EditForm ${hero.id}`);
+export const renderHouseEditForm = function(house) {
+    // TODO: Copy your code from a04 to render the house edit form
+    let houseEditForm = $("<div></div>").attr('class', 'EditForm').attr('id', `EditForm ${house.id}`);
     let topPanel = $("<div></div>");
     let bottomPanel = $("<form></form>");
-    heroEditForm.append(topPanel);
-    heroEditForm.append(bottomPanel);
+    houseEditForm.append(topPanel);
+    houseEditForm.append(bottomPanel);
 
-    topPanel.attr("style", `background-color: ${hero.backgroundColor};`);
-    topPanel.append($('<div></div>').append($("<img>").attr("src", `${hero.img}`)));
+    topPanel.attr("style", `background-color: ${house.backgroundColor};`);
+    topPanel.append($('<div></div>').append($("<img>").attr("src", `${house.img}`)));
 
-    bottomPanel.append($('<div>Hero Name:</div>'));
-    bottomPanel.append($('<input>').attr('value',`${hero.name}`).attr('id', `nameInput ${hero.id}`));
-    bottomPanel.append($('<div>First Name:</div>'));
-    bottomPanel.append($('<input>').attr('value',`${hero.first}`).attr('id', `firstNameInput ${hero.id}`));
-    bottomPanel.append($('<div>Last Name:</div>'));
-    bottomPanel.append($('<input>').attr('value',`${hero.last}`).attr('id', `lastNameInput ${hero.id}`));
-    bottomPanel.append($('<div>First Seen:</div>'));
-    bottomPanel.append($('<input>').attr('value',`${parseDate(hero.firstSeen)}`).attr('type', 'date').attr('id', `firstSeenInput ${hero.id}`));
+    bottomPanel.append($('<div>House Name:</div>'));
+    bottomPanel.append($('<input>').attr('value',`${house.name}`).attr('id', `nameInput ${house.id}`));
+    bottomPanel.append($('<div>Date Built:</div>'));
+    bottomPanel.append($('<input>').attr('value',`${parseDate(house.firstSeen)}`).attr('type', 'date').attr('id', `firstSeenInput ${house.id}`));
     bottomPanel.append($('<div>Description:</div>'));
-    bottomPanel.append($('<textarea></textarea>').text(`${hero.description}`).attr('id', `descriptionInput ${hero.id}`));
+    bottomPanel.append($('<textarea></textarea>').text(`${house.description}`).attr('id', `descriptionInput ${house.id}`));
 
-    bottomPanel.append($('<button>Cancel</button>').attr('type', 'button').attr('class', 'Cancel').attr('id', `Cancel ${hero.id}`));
-    bottomPanel.append($('<button>Save</button>').attr('type', 'submit').attr('class', 'Save').attr('id', `Save ${hero.id}`));
+    bottomPanel.append($('<button>Swipe Left</button>').attr('type', 'button').attr('class', 'Cancel').attr('id', `Cancel ${house.id}`));
+    bottomPanel.append($('<button>Swipe Right</button>').attr('type', 'submit').attr('class', 'Save').attr('id', `Save ${house.id}`));
 
-    return heroEditForm;
+    return houseEditForm;
 };
 
 
 
 /**
  * Handles the JavaScript event representing a user clicking on the "edit"
- *     button for a particular hero.
+ *     button for a particular house.
  * @param event  The JavaScript event that is being handled
  */
 export const handleEditButtonPress = function(event) {
-    // TODO: Render the hero edit form for the clicked hero and replace the
-    //       hero's card in the DOM with their edit form instead
-    let heroId = $(event.target).attr("id").substr(5);
-    let heroCards = document.querySelectorAll('.HeroCard');
-    for(let i = 0; i<heroCards.length; i++){
-        let currentCard = $(heroCards[i])
-        if (currentCard.attr("id").substr(9) == heroId){
-            let hero = heroicData.find(a => a.id == parseInt(heroId));
-            renderHeroEditForm(hero).insertBefore(currentCard);
+    // TODO: Render the house edit form for the clicked house and replace the
+    //       house's card in the DOM with their edit form instead
+    let houseId = $(event.target).attr("id").substr(5);
+    let houseCards = document.querySelectorAll('.HouseCard');
+    for(let i = 0; i<houseCards.length; i++){
+        let currentCard = $(houseCards[i])
+        if (currentCard.attr("id").substr(9) == houseId){
+            let house = houseicData.find(a => a.id == parseInt(houseId));
+            renderHouseEditForm(house).insertBefore(currentCard);
             currentCard.remove();
         }
     }
@@ -109,19 +106,19 @@ export const handleEditButtonPress = function(event) {
 
 /**
  * Handles the JavaScript event representing a user clicking on the "cancel"
- *     button for a particular hero.
+ *     button for a particular house.
  * @param event  The JavaScript event that is being handled
  */
 export const handleCancelButtonPress = function(event) {
-    // TODO: Render the hero card for the clicked hero and replace the
-    //       hero's edit form in the DOM with their card instead
-    let heroId = $(event.target).attr("id").substr(7);
+    // TODO: Render the house card for the clicked house and replace the
+    //       house's edit form in the DOM with their card instead
+    let houseId = $(event.target).attr("id").substr(7);
     let editForms = document.querySelectorAll('.EditForm');
     for(let i = 0; i<editForms.length; i++){
         let currentForm = $(editForms[i])
-        if (currentForm.attr("id").substr(9) == heroId){
-            let hero = heroicData.find(a => a.id == parseInt(heroId));
-            renderHeroCard(hero).insertBefore(currentForm);
+        if (currentForm.attr("id").substr(9) == houseId){
+            let house = houseicData.find(a => a.id == parseInt(houseId));
+            renderHouseCard(house).insertBefore(currentForm);
             currentForm.remove();
         }
     }
@@ -131,29 +128,29 @@ export const handleCancelButtonPress = function(event) {
 
 /**
  * Handles the JavaScript event representing a user clicking on the "cancel"
- *     button for a particular hero.
+ *     button for a particular house.
  * @param event  The JavaScript event that is being handled
  */
 export const handleEditFormSubmit = function(event) {
-    // TODO: Render the hero card using the updated field values from the
-    //       submitted form and replace the hero's edit form in the DOM with
+    // TODO: Render the house card using the updated field values from the
+    //       submitted form and replace the house's edit form in the DOM with
     //       their updated card instead
-    let heroId = $(event.target).attr("id").substr(5);
+    let houseId = $(event.target).attr("id").substr(5);
     let editForms = document.querySelectorAll('.EditForm');
     for(let i = 0; i<editForms.length; i++){
         let currentForm = $(editForms[i])
-        if (currentForm.attr("id").substr(9) == heroId){
-            let hero = heroicData.find(a => a.id == parseInt(heroId));
-            hero.name = document.getElementById('nameInput '+heroId).value;
-            hero.first = document.getElementById('firstNameInput '+heroId).value;
-            hero.last = document.getElementById('lastNameInput '+heroId).value;
-            let newDate = document.getElementById('firstSeenInput '+heroId).value;
+        if (currentForm.attr("id").substr(9) == houseId){
+            let house = houseicData.find(a => a.id == parseInt(houseId));
+            house.name = document.getElementById('nameInput '+houseId).value;
+            house.first = document.getElementById('firstNameInput '+houseId).value;
+            house.last = document.getElementById('lastNameInput '+houseId).value;
+            let newDate = document.getElementById('firstSeenInput '+houseId).value;
             let year = parseInt(newDate.substr(0,4));
             let month = parseInt(newDate.substr(5,2))-1;
             let day = parseInt(newDate.substr(8,2));
-            hero.firstSeen = new Date(year,month, day);
-            hero.description = document.getElementById('descriptionInput '+heroId).value;
-            renderHeroCard(hero).insertBefore(currentForm);
+            house.firstSeen = new Date(year,month, day);
+            house.description = document.getElementById('descriptionInput '+houseId).value;
+            renderHouseCard(house).insertBefore(currentForm);
             currentForm.remove();
         }
     }
@@ -163,23 +160,22 @@ export const handleEditFormSubmit = function(event) {
 
 
 /**
- * Given an array of hero objects, this function converts the data into HTML,
+ * Given an array of house objects, this function converts the data into HTML,
  *     loads it into the DOM, and adds event handlers.
- * @param  heroes  An array of hero objects to load (see data.js)
+ * @param  housees  An array of house objects to load (see data.js)
  */
-export const loadHeroesIntoDOM = function(heroes) {
+export const loadHouseesIntoDOM = function(housees) {
     // Grab a jQuery reference to the root HTML element
     const $root = $('#root');
 
-    // TODO: Generate the heroes using renderHeroCard()
+    // TODO: Generate the housees using renderHouseCard()
     //       NOTE: Copy your code from a04 for this part
 
-    // TODO: Append the hero cards to the $root element
+    // TODO: Append the house cards to the $root element
     //       NOTE: Copy your code from a04 for this part
 
-    heroes.forEach(function (hero) {
-        $root.append(renderHeroCard(hero));
-    })
+    $root.append(renderHouseCard(houseicData[0]));
+    
 
 
     // TODO: Use jQuery to add handleEditButtonPress() as an event handler for
@@ -198,8 +194,8 @@ export const loadHeroesIntoDOM = function(heroes) {
 
 
 /**
- * Use jQuery to execute the loadHeroesIntoDOM function after the page loads
+ * Use jQuery to execute the loadHouseesIntoDOM function after the page loads
  */
 $(function() {
-    loadHeroesIntoDOM(heroicData);
+    loadHouseesIntoDOM(houseicData);
 });
