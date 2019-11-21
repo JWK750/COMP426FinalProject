@@ -7,7 +7,7 @@
 
 
 /**
- * Represents a list of heroic users
+ * Represents a list of houses
  */
 const houseicData = [{
     id: 1,
