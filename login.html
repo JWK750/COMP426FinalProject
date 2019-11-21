@@ -1,35 +1,60 @@
-<section class="hero is-info is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <form action="" class="box">
-            <div class="field">
-              <label for="" class="label">Email</label>
-              <div class="control has-icons-left">
-                <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Login</title>
+
+        <!-- Include links to CSS stylesheets below -->
+        <!-- TODO (optional): Add link to bulma here -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+        <link rel=stylesheet type="text/css" href="styles.css">
+    </head>
+
+    <body>
+        <div id="root">
+          <!-- Login template from bulma -->
+          <section class="hero is-info is-fullheight">
+            <div class="hero-body">
+              <div class="container">
+                  <h1 class="title is-1">HomeZ</h1>
+                <div class="columns is-centered">
+                  <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <form action="" class="box">
+                      <div class="field">
+                        <label for="" class="label">Email</label>
+                        <div class="control has-icons-left">
+                          <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+                          <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label for="" class="label">Password</label>
+                        <div class="control has-icons-left">
+                          <input type="password" placeholder="*******" class="input" required>
+                          <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <button class="button is-success">
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="field">
-              <label for="" class="label">Password</label>
-              <div class="control has-icons-left">
-                <input type="password" placeholder="*******" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <button class="button is-success">
-                Login
-              </button>
-            </div>
-          </form>
+          </section>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+        <!-- Include links to JavaScript files below -->
+        <!-- TODO: Add link to jQuery here -->
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+    </body>
+</html>
