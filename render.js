@@ -3,6 +3,7 @@ Note: We used the code Josh built in assignment five and edited it to create a p
 use a similar dynamic rendering technique as the user clicks through houses.
  */
 
+
  let parseDate = function(date) {
      if (typeof(date) == 'string') {return date;}
 
