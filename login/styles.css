@@ -1,0 +1,9 @@
+div {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+#name {
+    font-size: 30px;
+}

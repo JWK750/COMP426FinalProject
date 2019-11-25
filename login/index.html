@@ -25,7 +25,7 @@
                       <div class="field">
                         <label for="" class="label">Email</label>
                         <div class="control has-icons-left">
-                          <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+                          <input id="email" type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
                           <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                           </span>
@@ -34,15 +34,20 @@
                       <div class="field">
                         <label for="" class="label">Password</label>
                         <div class="control has-icons-left">
-                          <input type="password" placeholder="*******" class="input" required>
+                          <input id="password" type="password" placeholder="*******" class="input" required>
                           <span class="icon is-small is-left">
                             <i class="fa fa-lock"></i>
                           </span>
                         </div>
                       </div>
                       <div class="field">
-                        <button class="button is-success">
+                        <button type="button" id="login-button" class="button is-success">
                           Login
+                        </button>
+                      </div>
+                      <div class="field">
+                        <button type="button" id="create-account" class="button is-danger">
+                          Create Account
                         </button>
                       </div>
                     </form>
@@ -55,7 +60,8 @@
 
         <!-- Include links to JavaScript files below -->
         <!-- TODO: Add link to jQuery here -->
-        <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules/axios/dist/axios.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="login_script.js"></script>
     </body>
 </html>
