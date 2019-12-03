@@ -53,5 +53,5 @@ export const loadHouseesIntoDOM = function(housees) {
 
 
 $(function() {
-    loadHouseesIntoDOM(houseicData);
+    $(document).on('click','#new-tweet-button', renderNewTweet);
 });
