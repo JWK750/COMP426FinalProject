@@ -8,10 +8,32 @@
 
         <!-- Include links to CSS stylesheets below -->
         <!-- TODO (optional): Add link to bulma here -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
     </head>
 
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <div id="search">
+                <div class="field">
+                    <label class="label">Latitude</label>
+                    <div class="control">
+                      <input class="input" type="text">
+                    </div>
+                  </div>
+                  
+                <div class="field">
+                    <label class="label">Longitude</label>
+                    <div class="control">
+                      <input class="input" type="text">
+                    </div>
+                </div>
+
+                <div class="control">
+                    <button id="search" class="button is-primary">Submit</button>
+                </div>
+            </div>
+            <div id="display"></div>
+        </div>
 
         <!-- Include links to JavaScript files below -->
         <!-- TODO: Add link to jQuery here -->
