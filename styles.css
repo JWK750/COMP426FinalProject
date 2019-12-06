@@ -4,6 +4,14 @@ div {
     text-align: center;
 }
 
+.topPanel {
+    height: 40%;
+}
+
+.topPanel img {
+    max-height: 90%;
+}
+
 #name {
     font-size: 30px;
 }
