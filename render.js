@@ -36,11 +36,16 @@ let searchRestaurants = async function(latitude, longitude) {
     topPanel.append($("<div id='name'></div>").text(`${restaurant.name}`));
     topPanel.attr("style", `background-color: yellow; height: 450px;`);
     topPanel.append($("<img>").attr("src", `${restaurant.photos[0].photo.url}`));
+    topPanel.append($(`<p>${restaurant.location.locality_verbose}</p>`));
     
     bottomPanel.attr("style", `background-color: pink;`);
-    bottomPanel.append($(`<p>${restaurant.location.locality_verbose}</p>`));
-    bottomPanel.append($(`<button>Dislike</button>`).attr("class", "button is-danger Dislike"));
-    bottomPanel.append($(`<button>Like</button>`).attr("class", "button is-success Like"));
+    if (localStorage.getItem('token')){
+        bottomPanel.append($(`<button>Dislike</button>`).attr("class", "button is-danger Dislike"));
+        bottomPanel.append($(`<button>Like</button>`).attr("class", "button is-success Like"));
+    } else {
+        bottomPanel.append($(`<p>Login to start liking restaurants!</p>`));
+    }
+    
 
     $('#display').empty();
     $('#display').append(restaurantCard);
@@ -69,6 +74,11 @@ let handleLike = function(){
     displayRestaurant(currResponse, searchPosition);
 }
 
+let handleLogout = function(){
+    localStorage.setItem('token','');
+    window.location.reload();
+}
+
 
 export const loadHouseesIntoDOM = function(housees) {
     
@@ -84,4 +94,5 @@ $(function() {
     $(document).on('click','#searchButton', handleSearch);
     $(document).on('click','.Dislike', handleDislike);
     $(document).on('click','.Like', handleLike);
+    $(document).on('click','.Logout', handleLogout);
 });

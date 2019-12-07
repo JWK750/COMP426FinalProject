@@ -1,4 +1,4 @@
-div {
+.RestaurantCard div {
     width: 100%;
     margin: auto;
     text-align: center;
@@ -9,7 +9,7 @@ div {
 }
 
 .topPanel img {
-    max-height: 90%;
+    max-height: 80%;
 }
 
 #name {
