@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Likes</title>
+        <title>Most Liked</title>
 
         <!-- Include links to CSS stylesheets below -->
         <!-- TODO (optional): Add link to bulma here -->
@@ -20,11 +20,11 @@
                                 Home
                             </a>
                           
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="http://localhost:3001/likes">
                                 Your Likes
                             </a>
     
-                            <a class="navbar-item" href="http://localhost:3001/mostLiked">
+                            <a class="navbar-item">
                                 Most Liked
                             </a>
                           
@@ -48,6 +48,8 @@
             <table class="table">
                     <thead>
                       <tr>
+                        <th>Rank</th>
+                        <th>Likes</th>
                         <th>Name</th>
                         <th>City</th>
                         <th>Cuisines</th>
@@ -58,20 +60,20 @@
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Rank</th>
                             <th>Name</th>
                             <th>City</th>
                             <th>Cuisines</th>
                             <th>Cost for Two</th>
                             <th>Phone</th>
                             <th>Website</th>
+                            <th>Likes</th>
                         </tr>
                     </tfoot>
                     <tbody class="likes"></tbody>
             </table>
 
-        <div id="loggedOut"></div>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="likes_script.js" type="module"></script>
+        <script src="most_liked_script.js" type="module"></script>
     </body>

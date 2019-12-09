@@ -1,6 +1,10 @@
+import {handleLogout} from "../api/Restaurants.js";
+
+
 $(document).ready(() => {
     $(document).on('click','#login-button', handleLogin);
     $(document).on('click','#create-account', handleCreateAccount);
+    $(document).on('click','.Logout', handleLogout);
 });
 
 const accountRoot = new axios.create({
@@ -17,6 +21,7 @@ async function handleLogin(e) {
         });
         let token = result.data.jwt;
         localStorage.setItem('token', token);
+        localStorage.setItem('name', email);
         window.open("http://localhost:3001/","_self");
     } catch (error){
         alert(error.response.data.msg);
