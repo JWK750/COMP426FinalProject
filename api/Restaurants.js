@@ -19,7 +19,7 @@ export const postUser = async function(restaurant){
 export const getUser = async function(){
     try {
         const result = await userRoot.get('');
-        console.log(result);
+        return(result.data.result);
     } catch (error){
         alert(error);
     }

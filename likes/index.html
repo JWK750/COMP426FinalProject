@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Likes</title>
+
+        <!-- Include links to CSS stylesheets below -->
+        <!-- TODO (optional): Add link to bulma here -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+    </head>
+
+    <body>
+
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Cuisines</th>
+                        <th>Cost for Two</th>
+                        <th>Phone</th>
+                        <th>Website</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Cuisines</th>
+                            <th>Cost for Two</th>
+                            <th>Phone</th>
+                            <th>Website</th>
+                        </tr>
+                    </tfoot>
+                    <tbody class="likes"></tbody>
+            </table>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="likes_script.js" type="module"></script>
+    </body>

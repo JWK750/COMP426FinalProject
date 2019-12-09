@@ -38,7 +38,7 @@ let searchRestaurants = async function(latitude, longitude) {
 
     topPanel.append($("<div id='name'></div>").text(`${restaurant.name}`));
     topPanel.attr("style", `background-color: yellow; height: 450px;`);
-    topPanel.append($("<img>").attr("src", `${restaurant.photos[0].photo.url}`));
+    topPanel.append($("<img>").attr("src", `${restaurant.featured_image}`));
     topPanel.append($(`<p>${restaurant.location.locality_verbose}</p>`));
     
     bottomPanel.attr("style", `background-color: pink;`);
@@ -72,8 +72,7 @@ let handleDislike = function(){
     displayRestaurant(currResponse, searchPosition);
 }
 
-let handleLike = async function(e){
-    e.preventDefault();
+let handleLike = async function(){
     postUser(currResponse.restaurants[searchPosition].restaurant);
     searchPosition += 1;
     displayRestaurant(currResponse, searchPosition);
