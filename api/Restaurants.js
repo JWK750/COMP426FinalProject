@@ -4,6 +4,11 @@ const userRoot = getAxiosInstance('/user/restaurants');
 const privateRoot = getAxiosInstance('/private/restaurants');
 const publicRoot = getAxiosInstance('/public/restaurants');
 
+export const handleLogout = function(){
+    localStorage.setItem('token','');
+    window.location.reload();
+}
+
 export const postUser = async function(restaurant){
     try {
         const result = await userRoot.post(`${restaurant.id}`, {

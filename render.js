@@ -4,7 +4,7 @@ Note: We used the code Josh built in assignment five and edited it to create a p
 use a similar dynamic rendering technique as the user clicks through houses.
  */
 
-import {postUser} from "../api/Restaurants.js";
+import {handleLogout, postUser} from "../api/Restaurants.js";
 
 
 const baseUrl = 'https://developers.zomato.com/api/v2.1/'
@@ -76,11 +76,6 @@ let handleLike = async function(){
     postUser(currResponse.restaurants[searchPosition].restaurant);
     searchPosition += 1;
     displayRestaurant(currResponse, searchPosition);
-}
-
-let handleLogout = function(){
-    localStorage.setItem('token','');
-    window.location.reload();
 }
     
 //searchRestaurants(35.921250,-79.054420);

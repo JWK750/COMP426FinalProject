@@ -12,6 +12,38 @@
     </head>
 
     <body>
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                      
+                    <div id="navbarBasicExample" class="navbar-menu">
+                        <div class="navbar-start">
+                            <a class="navbar-item" href="http://localhost:3001/">
+                                Home
+                            </a>
+                          
+                            <a class="navbar-item">
+                                Your Likes
+                            </a>
+    
+                            <a class="navbar-item">
+                                Most Liked
+                            </a>
+                          
+                        </div>
+                          
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a class="button is-primary" href="http://localhost:3001/login/">
+                                      <strong>Login/Sign Up</strong>
+                                    </a>
+                                    <a class="button is-light Logout">
+                                      Logout
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
 
             <table class="table">
                     <thead>
@@ -37,6 +69,7 @@
                     <tbody class="likes"></tbody>
             </table>
 
+        <div id="loggedOut"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
