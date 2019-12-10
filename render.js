@@ -30,23 +30,22 @@ let searchRestaurants = async function(latitude, longitude) {
 
 
  export const renderRestaurantCard = function(restaurant) {
-    let restaurantCard = $("<div></div>").attr("class", "RestaurantCard")
-    let topPanel = $("<div></div>").attr("class","topPanel");
-    let bottomPanel = $("<div></div>");
-    restaurantCard.append(topPanel);
-    restaurantCard.append(bottomPanel);
+    let restaurantCard = $("<div></div>").attr("class", "box card RestaurantCard")
 
-    topPanel.append($("<div id='name'></div>").text(`${restaurant.name}`));
-    topPanel.attr("style", `background-color: yellow; height: 450px;`);
-    topPanel.append($("<img>").attr("src", `${restaurant.featured_image}`));
-    topPanel.append($(`<p>${restaurant.location.locality_verbose}</p>`));
+    restaurantCard.append($('<div class="card-header" id=name></div>').append(`<h2 class="card-header-title is-centered">${restaurant.name}</h2>`));
+
+    let image = ($("<img>").attr("src", `${restaurant.featured_image}`));
+    let figure = $("<figure></figure>").attr("class","image is-4by3");
+    figure.append(image);
+    restaurantCard.append($("<div class=card-image></div>").append(figure));
     
-    bottomPanel.attr("style", `background-color: pink;`);
+    restaurantCard.append($(`<p>${restaurant.location.locality_verbose}</p>`));
+    
     if (localStorage.getItem('token')){
-        bottomPanel.append($(`<button>Dislike</button>`).attr("class", "button is-danger Dislike"));
-        bottomPanel.append($(`<button>Like</button>`).attr("class", "button is-success Like"));
+        restaurantCard.append($(`<button>Dislike</button>`).attr("class", "button is-danger Dislike"));
+        restaurantCard.append($(`<button>Like</button>`).attr("class", "button is-success Like"));
     } else {
-        bottomPanel.append($(`<p>Login to start liking restaurants!</p>`));
+        restaurantCard.append($(`<p>Login to start liking restaurants!</p>`));
     }
     
 

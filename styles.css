@@ -4,12 +4,9 @@
     text-align: center;
 }
 
-.topPanel {
-    height: 40%;
-}
-
-.topPanel img {
-    max-height: 80%;
+#display {
+    padding-top: 20px;
+    width: 40%;
 }
 
 #name {
