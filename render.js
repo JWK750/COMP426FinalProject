@@ -12,9 +12,25 @@ const baseUrl = 'https://developers.zomato.com/api/v2.1/'
 let searchPosition = 0;
 let currResponse;
 
-let searchRestaurants = async function(latitude, longitude) {
+let searchCity = async function(city){
+    city = encodeURIComponent(city.trim());
+    let requestUrl = baseUrl + 'locations?query=' + city;
+    const result = await axios({
+        method: 'get',
+        url: requestUrl,
+        headers: {
+            "Accept": "application/json",
+            "user-key": "e1ff70aa222cdce72627c3ac30d6d6e2",
+        }
+    });
+
+    let response = JSON.parse(result.request.response);
+    return response.location_suggestions[0].city_id;
+}
+
+let searchRestaurants = async function(cityId) {
     searchPosition = 0;
-    let requestUrl = baseUrl + 'search?lat=' + latitude + '&lon=' + longitude;
+    let requestUrl = baseUrl + 'search?entity_id=' +cityId + '&entity_type=city';
     const result = await axios({
         method: 'get',
         url: requestUrl,
@@ -39,14 +55,26 @@ let searchRestaurants = async function(latitude, longitude) {
     figure.append(image);
     restaurantCard.append($("<div class=card-image></div>").append(figure));
     
-    restaurantCard.append($(`<p>${restaurant.location.locality_verbose}</p>`));
+    restaurantCard.append($(`<div class="card-content">
+        <div class="columns">
+            <div class="column">
+                <div class="box">${restaurant.location.locality}</div>
+            </div>
+            <div class="column">
+                <div class="box">Cost for Two: ${restaurant.average_cost_for_two}</div>
+            </div>  
+        </div>
+    </div>`));
     
+    let footer = $('<footer></footer>').attr("class","card-footer")
     if (localStorage.getItem('token')){
-        restaurantCard.append($(`<button>Dislike</button>`).attr("class", "button is-danger Dislike"));
-        restaurantCard.append($(`<button>Like</button>`).attr("class", "button is-success Like"));
+        footer.append($(`<a>Dislike</a>`).attr("class", "card-footer-item Dislike"));
+        footer.append($(`<a>Like</a>`).attr("class", "card-footer-item Like"));
     } else {
-        restaurantCard.append($(`<p>Login to start liking restaurants!</p>`));
+        footer.append($(`<p class="card-footer-item">Login to start liking restaurants!</p>`));
     }
+
+    restaurantCard.append(footer);
     
 
     $('#display').empty();
@@ -60,10 +88,12 @@ let displayRestaurant = function(response, searchPosition){
 // Button handlers
 
 let handleSearch = async function(){
-    let lat = $('#lat').val();
-    let long = $('#long').val();
-    currResponse = await searchRestaurants(lat,long);
+    let city = $('#city').val();
+    let cityId = await searchCity(city);
+
+    currResponse = await searchRestaurants(cityId);
     displayRestaurant(currResponse, searchPosition);
+    window.scrollTo(0,document.body.scrollHeight);
 };
 
 let handleDislike = function(){

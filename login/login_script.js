@@ -36,7 +36,7 @@ async function handleCreateAccount(e) {
             "name": email,
             "pass": password
         });
-        console.log(result);
+        $('#create-account-message').removeClass("is-hidden");
     } catch (error){
         alert(error.response.data.msg);
     }

@@ -6,9 +6,15 @@
 
 #display {
     padding-top: 20px;
-    width: 40%;
+    padding-bottom: 20px;
+    width: 39%;
+}
+
+#search {
+    padding-top: 20px;
 }
 
 #name {
     font-size: 30px;
 }
+

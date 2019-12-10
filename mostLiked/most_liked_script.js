@@ -9,7 +9,6 @@ let renderTableRow = function(restaurant, count, likes) {
     row.append(`<td>${restaurant.cuisines}</td>`);
     row.append(`<td>${restaurant.average_cost_for_two}</td>`);
     row.append(`<td>${restaurant.phone_numbers}</td>`);
-    row.append(`<td>${restaurant.url}</td>`);
     $(".likes").append(row);
 }
 
@@ -31,7 +30,7 @@ $(async function() {
         }
     })
     console.log(responseArray);
-    for (let count = 0; count < responseArray.length; count++){
+    for (let count = 0; count < Math.min(responseArray.length,10); count++){
         renderTableRow(responseArray[count].restaurant, count+1, responseArray[count].likes.length);
     }
 });

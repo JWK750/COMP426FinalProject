@@ -31,6 +31,14 @@ export const getUser = async function(){
     }
 }
 
+export const deleteUser = async function(id){
+    try {
+        const result = await userRoot.delete(`${id}`);
+    } catch (error){
+        alert(error);
+    }
+}
+
 export const postLike = async function(restaurant){
     let result = [];
     try {
